@@ -10,6 +10,12 @@ let users = [
     { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
   ];
 
+  let products = [
+    { id: 1, name: 'Product 1', price: 10 },
+    { id: 2, name: 'Product 2', price: 20 },
+    { id: 3, name: 'Product 3', price: 30 }
+  ];
+
   app.use(express.json());
 
 
@@ -19,26 +25,94 @@ app.get('/', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-  res.send('List of products');
+  try {
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.get('/products/:id', (req, res) => {
-  const productId = req.params.id;
-  res.send(`Product details for ID ${productId}`);
+
+  try {
+    const productId = parseInt(req.params.id);
+    
+    // Find the product in the products array by ID
+    const product = products.find(product => product.id === productId);
+    
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.json(product);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
+
+
 app.post('/products', (req, res) => {
-  res.send('Add new product');
+  try {
+    const { name, price } = req.body;
+
+    // Create a new product object
+    const newProduct = { id: products.length + 1, name, price };
+    
+    // Add the product to the products array
+    products.push(newProduct);
+
+    res.json("Product added  to list");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.put('/products/:id', (req, res) => {
-  const productId = req.params.id;
-  res.send(`Update product with ID ${productId}`);
+  try {
+    const productId = parseInt(req.params.id);
+    const { name, price } = req.body;
+
+    // Find the index of the product in the products array by ID
+    const index = products.findIndex(product => product.id === productId);
+
+    if (index === -1) {
+    
+    
+      res.status(200).json("nothing to update"); 
+    } else {
+      // Product exists, update it
+      products[index] = { ...products[index], name, price };
+      res.json(products[index]);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.delete('/products/:id', (req, res) => {
-  const productId = req.params.id;
-  res.send(`Delete product with ID ${productId}`);
+  try {
+    const productId = parseInt(req.params.id);
+    
+    // Find the index of the product in the products array by ID
+    const index = products.findIndex(product => product.id === productId);
+    
+    if (index === -1) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    // Remove the product from the products array
+    products.splice(index, 1);
+
+    res.json({ message: 'Product deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.get('/users', (req, res) => {
@@ -73,11 +147,7 @@ app.get('/users', (req, res) => {
     }
   });
   
-  app.delete('/users/:id', (req, res) => {
-    const userId = parseInt(req.params.id);
-    users = users.filter(user => user.id !== userId);
-    res.send('User deleted successfully');
-  });
+  
   
 
 // Start the server
