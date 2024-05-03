@@ -64,7 +64,8 @@ app.post('/products', (req, res) => {
     // Add the product to the products array
     products.push(newProduct);
 
-    res.json("Product added  to list");
+    res.status(201).json( newProduct);
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
@@ -82,7 +83,7 @@ app.put('/products/:id', (req, res) => {
     if (index === -1) {
     
     
-      res.status(200).json("nothing to update"); 
+      res.status(404).json("nothing to update"); 
     } else {
       // Product exists, update it
       products[index] = { ...products[index], name, price };
@@ -108,7 +109,8 @@ app.delete('/products/:id', (req, res) => {
     // Remove the product from the products array
     products.splice(index, 1);
 
-    res.json({ message: 'Product deleted successfully' });
+    res.status(204).json({ message: 'Product deleted successfully' });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
