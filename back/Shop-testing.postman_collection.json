@@ -29,12 +29,18 @@
 									"\r",
 									"\r",
 									"pm.test(\"Check if response includes 'id'\", () => {\r",
-									"   var responseBody = pm.response.json();\r",
-									"   _.each(responseBody, (name)=> {\r",
+									"   let responseBody = pm.response.json();\r",
+									" responseBody.forEach((name)=> {\r",
 									"    pm.expect(Object.keys(name).length).to.be.at.least(3);\r",
 									"   })\r",
 									"});\r",
-									""
+									"\r",
+									"// Test to check if the 'name' field is not empty in the request body\r",
+									"pm.test(\"Each product has a non-empty 'name' field\", function () {\r",
+									"    pm.response.json().forEach(function(product) {\r",
+									"        pm.expect(product.name).to.not.be.empty;\r",
+									"    });\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -45,14 +51,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4898/products",
-							"protocol": "http",
+							"raw": "{{url}}/shops",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products"
+								"shops"
 							]
 						}
 					},
@@ -81,14 +85,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4898/products/1",
-							"protocol": "http",
+							"raw": "{{url}}/shops/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products",
+								"shops",
 								"1"
 							]
 						}
@@ -118,15 +120,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4898/products/5",
-							"protocol": "http",
+							"raw": "{{url}}/shops/10",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products",
-								"5"
+								"shops",
+								"10"
 							]
 						}
 					},
@@ -165,12 +165,32 @@
 				},
 				{
 					"name": "add item with full info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\",  () => {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"id is not empty\",  () => {\r",
+									"  \r",
+									"   let response = pm.response.json();\r",
+									"   pm.expect(response.id).to.not.be.undefined;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \"name\": \"'Product 5'\", \"price\" : \"99\" }",
+							"raw": "{ \"name\": \"'Product 5'\", \"price\" : \"4425525449\" }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -249,12 +269,39 @@
 				},
 				{
 					"name": "update item info, id update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Count object keys equal 3\", () => {\r",
+									"    let response = pm.response.json(); \r",
+									"    let keysCount = Object.keys(response).length;\r",
+									"    pm.expect(keysCount).to.equal(3); \r",
+									"});\r",
+									"pm.test(\"id is not empty\",  () => {\r",
+									"  let chai = require(\"chai\");\r",
+									"  let expect = chai.expect;\r",
+									"   let response = pm.response.json();\r",
+									"   let id = response.id;\r",
+									"   expect(id).to.be.a(\"number\")\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \"id\": \"2\",\"name\": \"lalala\", \"price\" : \"99\" }",
+							"raw": "{ \"name\": \"lalala111ff\", \"address\" : \"99cc75\", \"notprice\" : \"9\" }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -262,15 +309,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4898/products/4",
-							"protocol": "http",
+							"raw": "{{url}}/shops/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products",
-								"4"
+								"shops",
+								"1"
 							]
 						}
 					},
@@ -283,7 +328,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \"name\": \"'Product 1'\", \"price\" : \"10\", \"aha\":\"lalala\" }",
+							"raw": "{ \"name\": \"Merkurijus\", \"address\" : \"Saules g.10\", \"aha\":\"lalala\" }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -291,14 +336,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4898/products/1",
-							"protocol": "http",
+							"raw": "{{url}}/shops/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products",
+								"shops",
 								"1"
 							]
 						}
@@ -307,6 +350,20 @@
 				},
 				{
 					"name": "update item with id not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\",  () => {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -327,19 +384,41 @@
 				},
 				{
 					"name": "delete item that exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\",  () => {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response is empty\",  () => {\r",
+									"  let chai = require(\"chai\");\r",
+									"  let expect = chai.expect;\r",
+									"    let response = pm.response.text();\r",
+									"     \r",
+									"    expect(response).to.be.empty\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4898/products/2",
-							"protocol": "http",
+							"raw": "{{url}}/products/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
 								"products",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -347,11 +426,25 @@
 				},
 				{
 					"name": "delete item that not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\",  () => {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4898/products/8",
+							"raw": "http://localhost:4898/products/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -359,7 +452,7 @@
 							"port": "4898",
 							"path": [
 								"products",
-								"8"
+								"10"
 							]
 						}
 					},

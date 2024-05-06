@@ -10,10 +10,10 @@ let users = [
     { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
   ];
 
-  let products = [
-    { id: 1, name: 'Product 1', price: 10 },
-    { id: 2, name: 'Product 2', price: 20 },
-    { id: 3, name: 'Product 3', price: 30 }
+  let shops = [
+    { id: 1, name: 'Saulytė', address: "Saulučių g.15" },
+    { id: 2, name: 'Mėnulis', address: "Mėnulio g.15"},
+    { id: 3, name: 'Žvaigždutė', address: "Žvaigždžių g.15" }
   ];
 
   app.use(express.json());
@@ -21,31 +21,32 @@ let users = [
 
 // Define routes
 app.get('/', (req, res) => {
-  res.send('Welcome to our shop!');
+  res.send('Welcome to our planet!');
 });
 
-app.get('/products', (req, res) => {
+app.get('/shops', (req, res) => {
   try {
-    res.json(products);
+    res.json(shops);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-app.get('/products/:id', (req, res) => {
+app.get('/shops/:id', (req, res) => {
 
   try {
-    const productId = parseInt(req.params.id);
+    const shopId = parseInt(req.params.id);
     
     // Find the product in the products array by ID
-    const product = products.find(product => product.id === productId);
+    const shop = shops.find(shop => shop.id === shopId);
     
-    if (!product) {
+    if (!shops) {
       return res.status(404).json({ error: 'Product not found' });
     }
 
-    res.json(product);
+    res.json(shop);
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
@@ -54,17 +55,17 @@ app.get('/products/:id', (req, res) => {
 
 
 
-app.post('/products', (req, res) => {
+app.post('/shops', (req, res) => {
   try {
-    const { name, price } = req.body;
+    const { name, address } = req.body;
 
     // Create a new product object
-    const newProduct = { id: products.length + 1, name, price };
+    const newShop = { id: shops.length + 1, name, address };
     
     // Add the product to the products array
-    products.push(newProduct);
+    products.push(newShop);
 
-    res.status(201).json( newProduct);
+    res.status(201).json(newShop);
 
   } catch (error) {
     console.error(error);
@@ -72,22 +73,21 @@ app.post('/products', (req, res) => {
   }
 });
 
-app.put('/products/:id', (req, res) => {
+app.put('/shops/:id', (req, res) => {
   try {
-    const productId = parseInt(req.params.id);
-    const { name, price } = req.body;
+    const shopId = parseInt(req.params.id);
+    const { name, address} = req.body;
 
     // Find the index of the product in the products array by ID
-    const index = products.findIndex(product => product.id === productId);
+    const index = shops.findIndex(shops => shops.id === shopId);
 
     if (index === -1) {
-    
     
       res.status(404).json("nothing to update"); 
     } else {
       // Product exists, update it
-      products[index] = { ...products[index], name, price };
-      res.json(products[index]);
+      shops[index] = { ...shops[index], name, address };
+      res.json(shops[index]);
     }
   } catch (error) {
     console.error(error);
@@ -95,21 +95,21 @@ app.put('/products/:id', (req, res) => {
   }
 });
 
-app.delete('/products/:id', (req, res) => {
+app.delete('/shops/:id', (req, res) => {
   try {
-    const productId = parseInt(req.params.id);
+    const shopId = parseInt(req.params.id);
     
     // Find the index of the product in the products array by ID
-    const index = products.findIndex(product => product.id === productId);
+    const index = shops.findIndex(shops => shops.id === shopId);
     
     if (index === -1) {
-      return res.status(404).json({ error: 'Product not found' });
+      return res.status(404).json({ error: 'Shop not found' });
     }
 
     // Remove the product from the products array
-    products.splice(index, 1);
+    shops.splice(index, 1);
 
-    res.status(204).json({ message: 'Product deleted successfully' });
+    res.status(204).json({ message: 'Shop  deleted successfully' });
 
   } catch (error) {
     console.error(error);
