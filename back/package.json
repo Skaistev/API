@@ -8,7 +8,7 @@
     "test1": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch ./index.js",
     "test": "newman run ./Shop-testing.postman_collection.json",
-    "test2": "newman run ./Shop-testing.postman_collection.json -r htmlextra"
+    "test:report": "newman run ./Shop-testing.postman_collection.json -r htmlextra"
   },
   "keywords": [],
   "author": "saulute",
