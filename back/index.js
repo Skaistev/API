@@ -63,7 +63,7 @@ app.post('/shops', (req, res) => {
     const newShop = { id: shops.length + 1, name, address };
     
     // Add the product to the products array
-    products.push(newShop);
+    shops.push(newShop);
 
     res.status(201).json(newShop);
 
