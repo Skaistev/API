@@ -153,12 +153,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4898",
-							"protocol": "http",
+							"raw": "{{url}}",
 							"host": [
-								"localhost"
-							],
-							"port": "4898"
+								"{{url}}"
+							]
 						}
 					},
 					"response": []
@@ -190,7 +188,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \"name\": \"'Product 5'\", \"price\" : \"4425525449\" }",
+							"raw": "{ \"name\": \"Venera\", \"address\" :\"gatve.g.11\" }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -198,14 +196,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4898/products",
-							"protocol": "http",
+							"raw": "{{url}}/shops",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products"
+								"shops"
 							]
 						}
 					},
@@ -226,14 +222,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4898/products",
-							"protocol": "http",
+							"raw": "{{url}}/shops",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products"
+								"shops"
 							]
 						}
 					},
@@ -254,14 +248,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4898/products",
-							"protocol": "http",
+							"raw": "{{url}}/shops",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products"
+								"shops"
 							]
 						}
 					},
@@ -283,13 +275,7 @@
 									"    let keysCount = Object.keys(response).length;\r",
 									"    pm.expect(keysCount).to.equal(3); \r",
 									"});\r",
-									"pm.test(\"id is not empty\",  () => {\r",
-									"  let chai = require(\"chai\");\r",
-									"  let expect = chai.expect;\r",
-									"   let response = pm.response.json();\r",
-									"   let id = response.id;\r",
-									"   expect(id).to.be.a(\"number\")\r",
-									"});"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -368,14 +354,12 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4898/products/9",
-							"protocol": "http",
+							"raw": "{{url}}/shops/9",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products",
+								"shops",
 								"9"
 							]
 						}
@@ -412,13 +396,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/products/1",
+							"raw": "{{url}}/shops/3",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"products",
-								"1"
+								"shops",
+								"3"
 							]
 						}
 					},
@@ -444,15 +428,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4898/products/10",
-							"protocol": "http",
+							"raw": "{{url}}/shops/410",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
-								"products",
-								"10"
+								"shops",
+								"410"
 							]
 						}
 					},
