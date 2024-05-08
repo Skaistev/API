@@ -10,6 +10,8 @@ let users = [
     { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
   ];
 
+// GHGHKJKL;L;
+
   let shops = [
     { id: 1, name: 'Saulytė', address: "Saulučių g.15" },
     { id: 2, name: 'Mėnulis', address: "Mėnulio g.15"},
