@@ -10,7 +10,10 @@
     "test": "newman run ./Shop-testing.postman_collection.json",
     "testReport": "newman run ./Shop-testing.postman_collection.json -r htmlextra",
     "enviroment": "newman run ./workspace.postman_globals.json",
-    "test2":  "concurrently \"testReport\" \"enviroment\""
+    "test2":  "concurrently \"testReport\" \"enviroment\"",
+    "test3":  "npm-run-all -p test enviroment"
+
+
   },
   "keywords": [],
   "author": "saulute",
