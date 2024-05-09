@@ -29,7 +29,7 @@ jobs:
    # Run the POSTMAN collection
     - name: Run POSTMAN collection to console
       run: |
-       newman run ./back/Shop_collection.json ./back/workspace.postman_globals.json
+       newman run ./back/Shop_collection.json
 
     # Run the POSTMAN collection
     - name: Run POSTMAN collection to file

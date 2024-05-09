@@ -51,10 +51,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/shops",
+							"raw": "http://localhost:4898/shops",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops"
 							]
@@ -70,7 +72,6 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Response is not empty\", () => {\r",
-									"\r",
 									"    let response = pm.response.json();\r",
 									"\r",
 									"    pm.expect(response).not.to.be.empty;\r",
@@ -85,13 +86,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/shops/1",
+							"raw": "http://localhost:4898/shops/2",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -120,10 +123,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/shops/10",
+							"raw": "http://localhost:4898/shops/10",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops",
 								"10"
@@ -153,10 +158,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}",
+							"raw": "http://localhost:4898",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
-							]
+								"localhost"
+							],
+							"port": "4898"
 						}
 					},
 					"response": []
@@ -196,10 +203,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/shops",
+							"raw": "http://localhost:4898/shops",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops"
 							]
@@ -222,10 +231,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/shops",
+							"raw": "http://localhost:4898/shops",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops"
 							]
@@ -248,10 +259,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/shops",
+							"raw": "http://localhost:4898/shops",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops"
 							]
@@ -295,10 +308,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/shops/1",
+							"raw": "http://localhost:4898/shops/1",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops",
 								"1"
@@ -322,10 +337,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/shops/1",
+							"raw": "http://localhost:4898/shops/1",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops",
 								"1"
@@ -354,10 +371,12 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/shops/9",
+							"raw": "http://localhost:4898/shops/9",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops",
 								"9"
@@ -377,14 +396,10 @@
 									"    pm.response.to.have.status(204);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"response is empty\",  () => {\r",
-									"\r",
-									"    let response = pm.response.text();\r",
-									"     \r",
-									"    expect(response).to.be.empty\r",
-									"});\r",
-									"\r",
-									""
+									"pm.test(\"Response body is empty\",  () => {\r",
+									"    let response = pm.response.text(); \r",
+									"    pm.expect(response).to.be.empty;\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -395,13 +410,15 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/shops/3",
+							"raw": "http://localhost:4898/shops/1",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -427,10 +444,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/shops/410",
+							"raw": "http://localhost:4898/shops/410",
+							"protocol": "http",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "4898",
 							"path": [
 								"shops",
 								"410"
