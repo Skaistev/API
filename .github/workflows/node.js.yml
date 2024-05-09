@@ -26,15 +26,11 @@ jobs:
     - name: Make Directory for results
       run: mkdir -p testResults
 
-   # Run the POSTMAN collection
-    - name: Run POSTMAN collection to console
-      run: |
-       newman run ./back/Shop_collection.json
 
     # Run the POSTMAN collection
-    - name: Run POSTMAN collection to file
+    - name: Run POSTMAN collection
       run: |
-       newman run ./back/Shop_collection.json -r htmlextra,json --reporter-htmlextra-export testResults/htmlreport.html
+       newman run ./publicapi-collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html
 
     # Upload the contents of Test Results directory to workspace
     - name: Output the run Details
