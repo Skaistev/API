@@ -51,12 +51,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4898/shops",
-							"protocol": "http",
+							"raw": "{{url}}/shops",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "4898",
 							"path": [
 								"shops"
 							]

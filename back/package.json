@@ -7,7 +7,7 @@
   "scripts": {
     "test1": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch ./index.js",
-    "test": "newman run ./Shop_collection.json",
+    "test": "newman run ./Shop_collection.json -e ./globals.json",
     "testReport": "newman run ./Shop-testing.postman_collection.json -r htmlextra",
     "enviroment": "newman run ./workspace.postman_globals.json",
     "test2":  "concurrently \"testReport\" \"enviroment\"",
