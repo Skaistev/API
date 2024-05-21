@@ -10,10 +10,8 @@
     "test": "newman run ./Shop_collection.json -e ./globals.json",
     "testReport": "newman run ./Shop-testing.postman_collection.json -r htmlextra",
     "enviroment": "newman run ./workspace.postman_globals.json",
-    "test2":  "concurrently \"testReport\" \"enviroment\"",
-    "test3":  "npm-run-all -p test enviroment"
-
-
+    "test2": "concurrently \"testReport\" \"enviroment\"",
+    "test3": "npm-run-all -p test enviroment"
   },
   "keywords": [],
   "author": "saulute",
@@ -22,7 +20,9 @@
     "express": "^4.19.2",
     "newman": "^6.1.2",
     "newman-reporter-htmlextra": "^1.23.1",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

@@ -1,9 +1,33 @@
 import express from "express"
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsdoc from 'swagger-jsdoc';
 
 const app = express();
 const port = 4898;
 
 app.use(express.json());
+
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Express API Documentation',
+      version: '1.0.0',
+      description: 'API documentation for the Express API',
+    },
+    servers: [
+      {
+        url: 'http://localhost:4898',
+      },
+    ],
+  },
+  apis: ['./index.js'], // Path to the API docs
+
+
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 let users = [
     { id: 1, name: 'John Doe', email: 'john@example.com' },
